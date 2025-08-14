@@ -159,3 +159,67 @@ img{width:100%;height:200px;object-fit:cover;display:block}
   .menu.show{display:flex}
   .hamburger{display:inline-block}
 }
+
+/* ==================================
+   Extra Mobile Responsiveness
+   ================================== */
+@media (max-width: 768px) {
+  /* Countdown: stack vertically */
+  .countdown {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+  }
+  .countdown div {
+    padding: 0.8rem;
+  }
+
+  /* Hero flag: scale down */
+  .flag-wrap {
+    height: auto;
+  }
+  .chakra {
+    width: 60px;
+    height: 60px;
+  }
+
+  /* Timeline: 1 card per row */
+  .timeline .cards {
+    grid-template-columns: 1fr;
+  }
+
+  /* Gallery: 1 item per row */
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  img, video {
+    height: auto;
+    max-height: 300px;
+  }
+
+  /* Wish form: stack vertically */
+  .wish-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .wish-form input, .wish-form button {
+    width: 100%;
+  }
+
+  /* Popup: smaller padding on mobile */
+  .popup-card {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 1.6rem;
+  }
+  .tagline {
+    font-size: 0.9rem;
+  }
+  .btn {
+    font-size: 0.9rem;
+    padding: 0.6rem 0.9rem;
+  }
+}
