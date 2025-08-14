@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Fireworks canvas (hidden until used) -->
+  <!-- Fireworks canvas -->
   <canvas id="fireworks" aria-hidden="true"></canvas>
 
   <!-- Nav -->
@@ -19,7 +19,7 @@
       <span class="flag-dot"></span>
       15th August
     </div>
-    <button class="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="navMenu">
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="navMenu">
       <span></span><span></span><span></span>
     </button>
     <nav id="navMenu" class="menu" role="navigation">
@@ -39,14 +39,12 @@
 
       <div class="flag-wrap" aria-label="Tricolor flag with Ashoka Chakra">
         <div class="flag">
-          <!-- Saffron -->
           <div class="stripe saffron"></div>
-          <!-- White with Ashoka Chakra -->
           <div class="stripe white">
+            <!-- Ashoka Chakra SVG -->
             <svg class="chakra" viewBox="0 0 100 100" aria-hidden="true">
               <circle cx="50" cy="50" r="46" fill="none" stroke="#0a5fa1" stroke-width="4"/>
               <g stroke="#0a5fa1" stroke-width="2">
-                <!-- 24 spokes -->
                 <line x1="50" y1="50" x2="50" y2="4" transform="rotate(0 50 50)"/>
                 <line x1="50" y1="50" x2="50" y2="4" transform="rotate(15 50 50)"/>
                 <line x1="50" y1="50" x2="50" y2="4" transform="rotate(30 50 50)"/>
@@ -75,7 +73,6 @@
               <circle cx="50" cy="50" r="3" fill="#0a5fa1"/>
             </svg>
           </div>
-          <!-- Green -->
           <div class="stripe green"></div>
         </div>
       </div>
@@ -85,7 +82,6 @@
         <button id="celebrateBtn" class="btn outline">🎆 Celebrate</button>
       </div>
       <audio id="anthem" src="Instrumental.unknown" preload="auto"></audio>
-      <small class="hint"> <code></code> </small>
     </div>
   </section>
 
@@ -104,30 +100,12 @@
   <section id="timeline" class="section timeline">
     <h2>Milestones of Freedom</h2>
     <div class="cards">
-      <article class="card">
-        <h3>1857</h3>
-        <p>First War of Independence—sparked a nationwide resistance.</p>
-      </article>
-      <article class="card">
-        <h3>1885</h3>
-        <p>Formation of Indian National Congress—organized political voice.</p>
-      </article>
-      <article class="card">
-        <h3>1919</h3>
-        <p>Jallianwala Bagh—tragedy that galvanized the freedom struggle.</p>
-      </article>
-      <article class="card">
-        <h3>1930</h3>
-        <p>Dandi March—non-violent civil disobedience led by Mahatma Gandhi.</p>
-      </article>
-      <article class="card">
-        <h3>1942</h3>
-        <p>Quit India Movement—nationwide call for immediate independence.</p>
-      </article>
-      <article class="card">
-        <h3>1947</h3>
-        <p>15th August—India becomes a free and sovereign nation.</p>
-      </article>
+      <article class="card"><h3>1857</h3><p>First War of Independence—sparked a nationwide resistance.</p></article>
+      <article class="card"><h3>1885</h3><p>Formation of Indian National Congress—organized political voice.</p></article>
+      <article class="card"><h3>1919</h3><p>Jallianwala Bagh—tragedy that galvanized the freedom struggle.</p></article>
+      <article class="card"><h3>1930</h3><p>Dandi March—non-violent civil disobedience led by Mahatma Gandhi.</p></article>
+      <article class="card"><h3>1942</h3><p>Quit India Movement—nationwide call for immediate independence.</p></article>
+      <article class="card"><h3>1947</h3><p>15th August—India becomes a free and sovereign nation.</p></article>
     </div>
   </section>
 
@@ -135,31 +113,26 @@
   <section id="gallery" class="section">
     <h2>Gallery</h2>
     <div class="grid">
-      <figure><video src="15 August 1947  15 August 1947 A Documentary  India's Struggle for Freedom  Independence Day - TheGenteelMind (1080p, h264).mp4" alt="Celebration video 1" width="270" height="500" controls>
-        
-      </video>><figcaption>15th August 1947</figcaption></figure>
-      <figure><video src="india.mp4" alt="Celebration video 2" width="270" height="500" controls ></video><figcaption>Tricolor Pride</figcaption></figure>
-      <figure><video src="Untitled video - Made with Clipchamp (1).mp4" alt="Celebration video 3" width="270" height="500" controls>
-        
-      </video><figcaption>Unity in Diversity</figcaption></figure>
-      <figure><video src="Bharat.mp4" alt="Celebration video 4" width="270" height="500" controls></video><figcaption>Beauty of India</figcaption></figure>
+      <figure><video src="15 August 1947  15 August 1947 A Documentary  India's Struggle for Freedom  Independence Day - TheGenteelMind (1080p, h264).mp4" width="270" height="500" controls></video><figcaption>15th August 1947</figcaption></figure>
+      <figure><video src="india.mp4" width="270" height="500" controls></video><figcaption>Tricolor Pride</figcaption></figure>
+      <figure><video src="Untitled video - Made with Clipchamp (1).mp4" width="270" height="500" controls></video><figcaption>Unity in Diversity</figcaption></figure>
+      <figure><video src="Bharat.mp4" width="270" height="500" controls></video><figcaption>Beauty of India</figcaption></figure>
     </div>
-    
   </section>
 
   <!-- Wish -->
   <section id="wish" class="section wish">
     <h2>Send Your Wish</h2>
     <form id="wishForm" class="wish-form" autocomplete="off">
-      <input id="name" type="text" placeholder="Your name" aria-label="Your name" required />
-      <input id="message" type="text" placeholder="Your Independence Day wish" aria-label="Your message" required />
+      <input id="name" type="text" placeholder="Your name" required />
+      <input id="message" type="text" placeholder="Your Independence Day wish" required />
       <button class="btn" type="submit">Share Wish</button>
     </form>
-    <ul id="wishList" class="wish-list" aria-live="polite"></ul>
+    <ul id="wishList" class="wish-list"></ul>
   </section>
 
   <!-- Popup -->
-  <div id="popup" class="popup" role="dialog" aria-modal="true" aria-labelledby="popTitle" hidden>
+  <div id="popup" class="popup" role="dialog" aria-modal="true" hidden>
     <div class="popup-card">
       <h3 id="popTitle">Jai Hind!</h3>
       <p>May our nation soar higher with peace, prosperity, and unity.</p>
@@ -170,6 +143,17 @@
   <footer class="footer">
     <p>Made with ❤️ for 15th August • Jai Hind!</p>
   </footer>
+
+  <!-- Mobile Menu Script -->
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('navMenu');
+    hamburger.addEventListener('click', () => {
+      navMenu.classList.toggle('show');
+      const expanded = hamburger.getAttribute('aria-expanded') === 'true';
+      hamburger.setAttribute('aria-expanded', !expanded);
+    });
+  </script>
 
   <script src="script.js"></script>
 </body>
