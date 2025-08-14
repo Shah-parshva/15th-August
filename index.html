@@ -19,7 +19,7 @@
       <span class="flag-dot"></span>
       15th August
     </div>
-    <!--<aria-label="Toggle menu" aria-expanded="false" aria-controls="navMenu"> -->
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="navMenu">
       <span></span><span></span><span></span>
     </button>
     <nav id="navMenu" class="menu" role="navigation">
@@ -39,12 +39,14 @@
 
       <div class="flag-wrap" aria-label="Tricolor flag with Ashoka Chakra">
         <div class="flag">
+          <!-- Saffron -->
           <div class="stripe saffron"></div>
+          <!-- White with Ashoka Chakra -->
           <div class="stripe white">
-            <!-- Ashoka Chakra SVG -->
             <svg class="chakra" viewBox="0 0 100 100" aria-hidden="true">
               <circle cx="50" cy="50" r="46" fill="none" stroke="#0a5fa1" stroke-width="4"/>
               <g stroke="#0a5fa1" stroke-width="2">
+                <!-- 24 spokes -->
                 <line x1="50" y1="50" x2="50" y2="4" transform="rotate(0 50 50)"/>
                 <line x1="50" y1="50" x2="50" y2="4" transform="rotate(15 50 50)"/>
                 <line x1="50" y1="50" x2="50" y2="4" transform="rotate(30 50 50)"/>
@@ -73,6 +75,7 @@
               <circle cx="50" cy="50" r="3" fill="#0a5fa1"/>
             </svg>
           </div>
+          <!-- Green -->
           <div class="stripe green"></div>
         </div>
       </div>
@@ -82,6 +85,7 @@
         <button id="celebrateBtn" class="btn outline">🎆 Celebrate</button>
       </div>
       <audio id="anthem" src="Instrumental.unknown" preload="auto"></audio>
+      <small class="hint"><code></code></small>
     </div>
   </section>
 
@@ -113,10 +117,22 @@
   <section id="gallery" class="section">
     <h2>Gallery</h2>
     <div class="grid">
-      <figure><video src="15 August 1947 15 August 1947 A Documentary Indias Struggle for Freedom Independence Day - TheGenteelMind (1080p, h264).mp4" width="300" height="500" controls></video><figcaption>15th August 1947</figcaption></figure>
-      <figure><video src="india.mp4" width="300" height="500" controls></video><figcaption>Tricolor Pride</figcaption></figure>
-      <figure><video src="Untitled video - Made with Clipchamp (1).mp4" width="300" height="500" controls></video><figcaption>Unity in Diversity</figcaption></figure>
-      <figure><video src="Bharat.mp4" width="300" height="500" controls></video><figcaption>Beauty of India</figcaption></figure>
+      <figure>
+        <video src="15 August 1947  15 August 1947 A Documentary  India's Struggle for Freedom  Independence Day - TheGenteelMind (1080p, h264).mp4" width="270" height="500" controls></video>
+        <figcaption>15th August 1947</figcaption>
+      </figure>
+      <figure>
+        <video src="india.mp4" width="270" height="500" controls></video>
+        <figcaption>Tricolor Pride</figcaption>
+      </figure>
+      <figure>
+        <video src="Untitled video - Made with Clipchamp (1).mp4" width="270" height="500" controls></video>
+        <figcaption>Unity in Diversity</figcaption>
+      </figure>
+      <figure>
+        <video src="Bharat.mp4" width="270" height="500" controls></video>
+        <figcaption>Beauty of India</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -124,15 +140,15 @@
   <section id="wish" class="section wish">
     <h2>Send Your Wish</h2>
     <form id="wishForm" class="wish-form" autocomplete="off">
-      <input id="name" type="text" placeholder="Your name" required />
-      <input id="message" type="text" placeholder="Your Independence Day wish" required />
+      <input id="name" type="text" placeholder="Your name" aria-label="Your name" required />
+      <input id="message" type="text" placeholder="Your Independence Day wish" aria-label="Your message" required />
       <button class="btn" type="submit">Share Wish</button>
     </form>
-    <ul id="wishList" class="wish-list"></ul>
+    <ul id="wishList" class="wish-list" aria-live="polite"></ul>
   </section>
 
   <!-- Popup -->
-  <div id="popup" class="popup" role="dialog" aria-modal="true" hidden>
+  <div id="popup" class="popup" role="dialog" aria-modal="true" aria-labelledby="popTitle" hidden>
     <div class="popup-card">
       <h3 id="popTitle">Jai Hind!</h3>
       <p>May our nation soar higher with peace, prosperity, and unity.</p>
@@ -144,17 +160,185 @@
     <p>Made with ❤️ for 15th August • Jai Hind!</p>
   </footer>
 
-  <!-- Mobile Menu Script -->
+  <!-- Inline JS (kept exactly as you provided + hamburger ID wired) -->
   <script>
-    const hamburger = document.getElementById('hamburger');
-    const navMenu = document.getElementById('navMenu');
-    hamburger.addEventListener('click', () => {
-      navMenu.classList.toggle('show');
-      const expanded = hamburger.getAttribute('aria-expanded') === 'true';
-      hamburger.setAttribute('aria-expanded', !expanded);
-    });
-  </script>
+  /* ========= Helpers ========= */
+  const $ = (q, sc = document) => sc.querySelector(q);
+  const $$ = (q, sc = document) => [...sc.querySelectorAll(q)];
 
-  <script src="script.js"></script>
+  /* ========= Mobile Nav ========= */
+  const burger = $('.hamburger');     // button has id="hamburger" but class is present, so this still works
+  const menu = $('#navMenu');
+  burger.addEventListener('click', () => {
+    const open = menu.classList.toggle('show');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+
+  /* ========= Anthem Controls ========= */
+  const anthem = $('#anthem');
+  const playBtn = $('#playAnthem');
+  let anthemPlaying = false;
+
+  function openPopup(text){
+    const popup = $('#popup');
+    popup.querySelector('p').textContent = text;
+    popup.hidden = false;
+  }
+
+  function toggleAnthem(){
+    if(!anthem) return;
+    if(!anthemPlaying){
+      anthem.play().then(()=> {
+        anthemPlaying = true;
+        playBtn.textContent = '⏸ Pause Anthem';
+      }).catch(()=> {
+        // Autoplay blocked: prompt user via popup
+        openPopup("Tap Play to start the anthem.");
+      });
+    }else{
+      anthem.pause();
+      anthemPlaying = false;
+      playBtn.textContent = '▶ Play Anthem';
+    }
+  }
+  playBtn.addEventListener('click', toggleAnthem);
+
+  /* ========= Countdown to next 15 Aug ========= */
+  function nextIndependenceDay() {
+    const now = new Date();
+    const year = now.getMonth() > 7 || (now.getMonth() === 7 && now.getDate() > 15) ? now.getFullYear()+1 : now.getFullYear();
+    // Month index: 7 = August
+    return new Date(year, 7, 15, 0, 0, 0, 0);
+  }
+
+  const dEl = $('#d'), hEl = $('#h'), mEl = $('#m'), sEl = $('#s');
+  function updateCountdown(){
+    const end = nextIndependenceDay();
+    const now = new Date();
+    let diff = end - now;
+    if(diff < 0) diff = 0;
+    const sec = Math.floor(diff/1000)%60;
+    const min = Math.floor(diff/1000/60)%60;
+    const hr  = Math.floor(diff/1000/60/60)%24;
+    const day = Math.floor(diff/1000/60/60/24);
+    dEl.textContent = String(day).padStart(2,'0');
+    hEl.textContent = String(hr).padStart(2,'0');
+    mEl.textContent = String(min).padStart(2,'0');
+    sEl.textContent = String(sec).padStart(2,'0');
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  /* ========= Fireworks ========= */
+  const fwCanvas = $('#fireworks');
+  const ctx = fwCanvas.getContext('2d');
+  let particles = [];
+  let rafId = null;
+
+  function resizeCanvas(){
+    fwCanvas.width = window.innerWidth;
+    fwCanvas.height = window.innerHeight;
+  }
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+
+  function rand(min, max){ return Math.random()*(max-min)+min; }
+
+  function createBurst(x, y, count=80){
+    for(let i=0;i<count;i++){
+      const angle = Math.random()*Math.PI*2;
+      const speed = rand(1.5, 4.2);
+      particles.push({
+        x, y,
+        vx: Math.cos(angle)*speed,
+        vy: Math.sin(angle)*speed,
+        life: rand(50, 90),
+        alpha: 1,
+        gravity: 0.025 + Math.random()*0.02,
+        size: rand(1, 2.8)
+      });
+    }
+  }
+
+  function step(){
+    ctx.clearRect(0,0,fwCanvas.width, fwCanvas.height);
+    particles.forEach(p=>{
+      p.x += p.vx;
+      p.y += p.vy;
+      p.vy += p.gravity;
+      p.life--;
+      p.alpha = Math.max(0, p.life/90);
+      ctx.globalAlpha = p.alpha;
+      // random tricolor sparkle
+      const pick = Math.random();
+      ctx.fillStyle = pick < .34 ? '#FF9933' : (pick < .67 ? '#138808' : '#0a5fa1');
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size, 0, Math.PI*2);
+      ctx.fill();
+    });
+    particles = particles.filter(p=>p.life>0 && p.alpha>0.02);
+    if(particles.length>0) rafId = requestAnimationFrame(step);
+    else {
+      fwCanvas.style.opacity = '0';
+      cancelAnimationFrame(rafId);
+      rafId = null;
+    }
+  }
+
+  function fireworksBurst(centerX, centerY){
+    createBurst(centerX, centerY, 120);
+    createBurst(centerX+rand(-40,40), centerY+rand(-40,40), 90);
+    createBurst(centerX+rand(-60,60), centerY+rand(-60,60), 90);
+    if(!rafId){
+      fwCanvas.style.opacity = '1';
+      rafId = requestAnimationFrame(step);
+    }
+  }
+
+  /* Button to celebrate */
+  $('#celebrateBtn').addEventListener('click', ()=>{
+    fireworksBurst(window.innerWidth/2, window.innerHeight/3);
+    openPopup("🎉Happy Independence Day! Jai Hind!");
+  });
+
+  /* ========= Wishes ========= */
+  const form = $('#wishForm');
+  const wishList = $('#wishList');
+
+  form.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    const name = $('#name').value.trim();
+    const msg = $('#message').value.trim();
+    if(!name || !msg) return;
+    const li = document.createElement('li');
+    li.textContent = ` ${name}: ${msg}`;
+    wishList.prepend(li);
+    form.reset();
+    // confetti-like mini burst
+    fireworksBurst(rand(50, window.innerWidth-50), rand(80, window.innerHeight-100));
+  });
+
+  /* ========= Popup ========= */
+  const popup = $('#popup');
+  const closePopupBtn = $('#closePopup');
+  closePopupBtn.addEventListener('click', ()=> popup.hidden = true);
+  popup.addEventListener('click', (e)=> { if(e.target === popup) popup.hidden = true; });
+
+  /* ========= Accessibility niceties ========= */
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape' && !popup.hidden) popup.hidden = true;
+  });
+
+  /* ========= Bonus: celebrate on load if it is Aug 15 ========= */
+  (function celebrateIfToday(){
+    const n = new Date();
+    if(n.getMonth() === 7 && n.getDate() === 15){
+      setTimeout(()=>{
+        fireworksBurst(window.innerWidth/2, window.innerHeight/3);
+        openPopup("Wishing you a very Happy Independence Day!");
+      }, 600);
+    }
+  })();
+  </script>
 </body>
 </html>
