@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Happy Independence Day | 15 August</title>
+  <meta name="description" content="Celebrate India's Independence Day with a beautiful tricolor theme, countdown, fireworks, anthem, and more!" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Fireworks canvas (hidden until used) -->
+  <canvas id="fireworks" aria-hidden="true"></canvas>
+
+  <!-- Nav -->
+  <header class="nav">
+    <div class="brand">
+      <span class="flag-dot"></span>
+      15th August
+    </div>
+    <button class="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="navMenu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="navMenu" class="menu" role="navigation">
+      <a href="#home">Home</a>
+      <a href="#countdown">Countdown</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#wish">Wish</a>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section id="home" class="hero" role="banner">
+    <div class="hero-content">
+      <h1>Happy 79th Independence Day <span class="emoji" aria-hidden="true"></span></h1>
+      <p class="tagline">Proud to be Indian — celebrating freedom, unity, and hope.</p>
+
+      <div class="flag-wrap" aria-label="Tricolor flag with Ashoka Chakra">
+        <div class="flag">
+          <!-- Saffron -->
+          <div class="stripe saffron"></div>
+          <!-- White with Ashoka Chakra -->
+          <div class="stripe white">
+            <svg class="chakra" viewBox="0 0 100 100" aria-hidden="true">
+              <circle cx="50" cy="50" r="46" fill="none" stroke="#0a5fa1" stroke-width="4"/>
+              <g stroke="#0a5fa1" stroke-width="2">
+                <!-- 24 spokes -->
+                <line x1="50" y1="50" x2="50" y2="4" transform="rotate(0 50 50)"/>
+                <line x1="50" y1="50" x2="50" y2="4" transform="rotate(15 50 50)"/>
+                <line x1="50" y1="50" x2="50" y2="4" transform="rotate(30 50 50)"/>
+                <line x1="50" y1="50" x2="50" y2="4" transform="rotate(45 50 50)"/>
+                <line x1="50" y1="50" x2="50" y2="4" transform="rotate(60 50 50)"/>
+                <line x1="50" y1="50" x2="50" y2="4" transform="rotate(75 50 50)"/>
+                <line x1="50" y1="50" x2="50" y2="4" transform="rotate(90 50 50)"/>
+                <line x1="50" y1="50" x2="50" y2="4" transform="rotate(105 50 50)"/>
+                <line x1="50" y1="50" x2="50" y2="4" transform="rotate(120 50 50)"/>
+                <line x1="50" y1="50" x2="50" y2="4" transform="rotate(135 50 50)"/>
+                <line x1="50" y1="50" x2="50" y2="4" transform="rotate(150 50 50)"/>
+                <line x1="50" y1="50" x2="50" y2="4" transform="rotate(165 50 50)"/>
+                <line x1="50" y1="50" x2="50" y2="4" transform="rotate(180 50 50)"/>
+                <line x1="50" y1="50" x2="50" y2="4" transform="rotate(195 50 50)"/>
+                <line x1="50" y1="50" x2="50" y2="4" transform="rotate(210 50 50)"/>
+                <line x1="50" y1="50" x2="50" y2="4" transform="rotate(225 50 50)"/>
+                <line x1="50" y1="50" x2="50" y2="4" transform="rotate(240 50 50)"/>
+                <line x1="50" y1="50" x2="50" y2="4" transform="rotate(255 50 50)"/>
+                <line x1="50" y1="50" x2="50" y2="4" transform="rotate(270 50 50)"/>
+                <line x1="50" y1="50" x2="50" y2="4" transform="rotate(285 50 50)"/>
+                <line x1="50" y1="50" x2="50" y2="4" transform="rotate(300 50 50)"/>
+                <line x1="50" y1="50" x2="50" y2="4" transform="rotate(315 50 50)"/>
+                <line x1="50" y1="50" x2="50" y2="4" transform="rotate(330 50 50)"/>
+                <line x1="50" y1="50" x2="50" y2="4" transform="rotate(345 50 50)"/>
+              </g>
+              <circle cx="50" cy="50" r="3" fill="#0a5fa1"/>
+            </svg>
+          </div>
+          <!-- Green -->
+          <div class="stripe green"></div>
+        </div>
+      </div>
+
+      <div class="cta-row">
+        <button id="playAnthem" class="btn">▶ Play Anthem</button>
+        <button id="celebrateBtn" class="btn outline">🎆 Celebrate</button>
+      </div>
+      <audio id="anthem" src="Instrumental.unknown" preload="auto"></audio>
+      <small class="hint"> <code></code> </small>
+    </div>
+  </section>
+
+  <!-- Countdown -->
+  <section id="countdown" class="section">
+    <h2>Countdown to 15th August</h2>
+    <div class="countdown">
+      <div><span id="d">00</span><label>Days</label></div>
+      <div><span id="h">00</span><label>Hours</label></div>
+      <div><span id="m">00</span><label>Minutes</label></div>
+      <div><span id="s">00</span><label>Seconds</label></div>
+    </div>
+  </section>
+
+  <!-- Timeline -->
+  <section id="timeline" class="section timeline">
+    <h2>Milestones of Freedom</h2>
+    <div class="cards">
+      <article class="card">
+        <h3>1857</h3>
+        <p>First War of Independence—sparked a nationwide resistance.</p>
+      </article>
+      <article class="card">
+        <h3>1885</h3>
+        <p>Formation of Indian National Congress—organized political voice.</p>
+      </article>
+      <article class="card">
+        <h3>1919</h3>
+        <p>Jallianwala Bagh—tragedy that galvanized the freedom struggle.</p>
+      </article>
+      <article class="card">
+        <h3>1930</h3>
+        <p>Dandi March—non-violent civil disobedience led by Mahatma Gandhi.</p>
+      </article>
+      <article class="card">
+        <h3>1942</h3>
+        <p>Quit India Movement—nationwide call for immediate independence.</p>
+      </article>
+      <article class="card">
+        <h3>1947</h3>
+        <p>15th August—India becomes a free and sovereign nation.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section id="gallery" class="section">
+    <h2>Gallery</h2>
+    <div class="grid">
+      <figure><video src="15 August 1947  15 August 1947 A Documentary  India's Struggle for Freedom  Independence Day - TheGenteelMind (1080p, h264).mp4" alt="Celebration video 1" width="270" height="500" controls>
+        
+      </video>><figcaption>15th August 1947</figcaption></figure>
+      <figure><video src="india.mp4" alt="Celebration video 2" width="270" height="500" controls ></video><figcaption>Tricolor Pride</figcaption></figure>
+      <figure><video src="Untitled video - Made with Clipchamp (1).mp4" alt="Celebration video 3" width="270" height="500" controls>
+        
+      </video><figcaption>Unity in Diversity</figcaption></figure>
+      <figure><video src="Bharat.mp4" alt="Celebration video 4" width="270" height="500" controls></video><figcaption>Beauty of India</figcaption></figure>
+    </div>
+    
+  </section>
+
+  <!-- Wish -->
+  <section id="wish" class="section wish">
+    <h2>Send Your Wish</h2>
+    <form id="wishForm" class="wish-form" autocomplete="off">
+      <input id="name" type="text" placeholder="Your name" aria-label="Your name" required />
+      <input id="message" type="text" placeholder="Your Independence Day wish" aria-label="Your message" required />
+      <button class="btn" type="submit">Share Wish</button>
+    </form>
+    <ul id="wishList" class="wish-list" aria-live="polite"></ul>
+  </section>
+
+  <!-- Popup -->
+  <div id="popup" class="popup" role="dialog" aria-modal="true" aria-labelledby="popTitle" hidden>
+    <div class="popup-card">
+      <h3 id="popTitle">Jai Hind!</h3>
+      <p>May our nation soar higher with peace, prosperity, and unity.</p>
+      <button id="closePopup" class="btn small">Close</button>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>Made with ❤️ for 15th August • Jai Hind!</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
